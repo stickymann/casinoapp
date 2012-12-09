@@ -15,14 +15,15 @@ public class PokerTable implements Runnable {
     public void run() {
         
         MySQLAccess db = new MySQLAccess();
-        querystr = "SELECT table_id from pokertables";
+        querystr = "SELECT table_id,description from pokertables";
         try
         {
             resultSet = db.excuteSelectQuery(querystr);
             System.out.println("thread : "+ Thread.currentThread().getName());
             while (resultSet.next()) {
                 String table_id = resultSet.getString("table_id");
-                System.out.println("Table Id: " + table_id);
+                String description = resultSet.getString("description");
+                System.out.println("Table Id: " + table_id + ", " + description);
             }
             System.out.println("");
         } catch (Exception ex) {
