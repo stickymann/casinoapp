@@ -44,7 +44,7 @@ public class Casino {
        this.th_table = new Thread[number_of_tables];
        for(int i=0; i<number_of_tables; i++){
            this.th_table[i]= new Thread(new PokerTable());  
-           //this.th_table[i].;
+           this.th_table[i].setName(Integer.toString(i+1));
        }
     }
     

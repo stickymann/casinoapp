@@ -15,7 +15,7 @@ public class Casinoapp {
      */
     public static void main(String[] args) {
         Casino casino;
-        casino = new Casino(1,1);
+        casino = new Casino();
         casino.start();
     }
 }

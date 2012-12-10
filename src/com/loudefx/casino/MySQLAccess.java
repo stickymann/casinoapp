@@ -8,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.SQLException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,22 +23,21 @@ public class MySQLAccess {
     private ResultSet resultSet = null;
     private Properties properties = null;
     
-    public MySQLAccess(){
-        this.connectToDatabase();
+    public MySQLAccess(String DBPARAMS){
+        this.connectToDatabase(DBPARAMS);
     }
 
-    private void connectToDatabase() {
+    private void connectToDatabase(String DBAUTH) {
         FileInputStream instream;
-        String INPUT_FILE = System.getProperty("user.dir") + "/database.properties";
         this.properties = new Properties();
         try {
-                instream = new FileInputStream(INPUT_FILE);
+                instream = new FileInputStream(DBAUTH);
                 this.properties.load(instream);
         } catch (FileNotFoundException ex) {
-            System.out.println("File not found: " + INPUT_FILE);
+            System.out.println("File not found: " + DBAUTH);
             System.out.println(ex.getMessage());
         } catch (IOException ex) {
-            System.out.println("Error: file not found " + INPUT_FILE);
+            System.out.println("Error: file not found " + DBAUTH);
             System.out.println(ex.getMessage());
         }
         
