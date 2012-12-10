@@ -16,19 +16,11 @@ public class Casino {
     private Thread[] th_table;
     
     public Casino(){
-        this.setTablesTotal(10);
-        this.setTablesStartnum(0);
-        this.setPlayersMin(2);
-        this.setPlayersMax(10);
-        this.initialize();
+        this(10,0,2,10);
     }
     
     public Casino(int tablecount,int startnum){
-        this.setTablesTotal(tablecount);
-        this.setTablesStartnum(startnum);
-        this.setPlayersMin(2);
-        this.setPlayersMax(10);
-        this.initialize();
+        this(tablecount,startnum,2,10);
     }
     
     public Casino(int tablecount,int startnum, int playermin, int playermax){
@@ -43,7 +35,7 @@ public class Casino {
        int number_of_tables = this.getTablesTotal();
        this.th_table = new Thread[number_of_tables];
        for(int i=0; i<number_of_tables; i++){
-           this.th_table[i]= new Thread(new PokerTable());  
+           this.th_table[i]= new Thread(new PokerTable(this.getPlayersMin(),this.getPlayersMax()));  
            this.th_table[i].setName(Integer.toString(i+1));
        }
     }
